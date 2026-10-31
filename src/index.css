@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+  }
+
+  .dark, [data-theme="dark"] {
+    --bg-page: #05030a;
+    --bg-card: #0f0a1c;
+    --border-color: #231938;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+  }
+
+  /* Deep Black/OLED Theme Overrides for high contrast surfaces */
+  .dark .bg-slate-900, [data-theme="dark"] .bg-slate-900 {
+    background-color: #0f0a1c;
+  }
+  .dark .bg-slate-950, [data-theme="dark"] .bg-slate-950 {
+    background-color: #05030a;
+  }
+  .dark .border-slate-800, [data-theme="dark"] .border-slate-800 {
+    border-color: #231938;
+  }
+  .dark .border-slate-700, [data-theme="dark"] .border-slate-700 {
+    border-color: #2e2149;
+  }
+  .dark .bg-slate-800, [data-theme="dark"] .bg-slate-800 {
+    background-color: #160f29;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* ================= PRETTIER SLEEK SCROLLBARS ================= */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.4) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.45), rgba(99, 102, 241, 0.45));
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.85), rgba(99, 102, 241, 0.85));
+}
+
+.dark *, [data-theme="dark"] * {
+  scrollbar-color: rgba(167, 139, 250, 0.4) transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb, [data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(167, 139, 250, 0.5), rgba(129, 140, 248, 0.5));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover, [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(196, 181, 253, 0.9), rgba(165, 180, 252, 0.9));
+}
+
+/* Container specific fine scrollbars */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* ================= GAMIFICATION ANIMATIONS ================= */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 14px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -4px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px) scale(1);
+  }
+}
+
+.animate-float-up {
+  animation: floatUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bossShake {
+  0%, 100% { transform: translateX(0) scale(1); }
+  20% { transform: translateX(-12px) rotate(-4deg) scale(0.95); }
+  40% { transform: translateX(10px) rotate(4deg) scale(1.05); }
+  60% { transform: translateX(-8px) rotate(-2deg); }
+  80% { transform: translateX(6px) rotate(2deg); }
+}
+
+.animate-boss-shake {
+  animation: bossShake 0.45s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+@keyframes chestWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.08); }
+  75% { transform: rotate(8deg) scale(1.08); }
+}
+
+.animate-chest-wiggle {
+  animation: chestWiggle 0.65s ease-in-out infinite;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  70% { transform: scale(1.03); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop-in {
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Safe area insets for mobile edge-to-edge support */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

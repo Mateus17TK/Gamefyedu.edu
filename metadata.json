@@ -1,0 +1,8 @@
+{
+  "name": "GAMIFY EDU - Plataforma Educacional Gamificada",
+  "description": "Ambiente de aprendizagem gamificado para ensino fundamental e médio com quizzes interativos, chefes didáticos, recompensas lúdicas e painel pedagógico de alta performance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
